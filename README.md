@@ -10,11 +10,11 @@ start with `npm run start-dev`
 
 ## Description
 
-Describe your project in one/two lines.
+This app is the link between new talent who needs different kind of mentorship and senior professional willing to share their expertise.
 
 ## Motivation
 
-Just a litle API for educational purposes.
+Help recent graduated students to jump to the professional market
 
 ## User Stories
 
@@ -70,21 +70,81 @@ Homepage: - …
 User model
 
 ```javascript
-{
-	username: String;
-	password: String;
-}
+
+Mentor Model
+email: {
+		type: String,
+		required: true,
+		unique: true
+	},
+	hashedPassword: {
+		type: String,
+		required: true
+	},
+	image: { type: String, },
+	name: {
+		type: String,
+		required: true,
+	},
+	surname: {
+		type: String,
+		required: true,
+	},
+	industry: {
+		type: String,
+		required: true,
+	}
+
+	yearsOfExperience: {
+		type: Number,
+		required: true,
+	},
+	languages: {
+		type: Array,
+		required: true
+	},
+
+	Talent Model
+	email: {
+		type: String,
+		required: true,
+		unique: true
+	},
+	hashedPassword: {
+		type: String,
+		required: true
+	},
+	image: { type: String, },
+	name: {
+		type: String,
+		required: true,
+	},
+	surname: {
+		type: String,
+		required: true,
+	},
+	industry: {
+		type: String,
+		required: true,
+	},
+	languages: {
+		type: Array,
+		required: true
+	},
+
 ```
 
-Event model
-
+models
 ```javascript
-{
-	owner: ObjectId<User>
-	name: String
-	description: String
-	date: Date
-	location: String
+
+Questions
+
+	industry: String,
+	talent_id: String,
+	deadline: Date,
+	description: {
+		title: String,
+	
 }
 ```
 
@@ -92,7 +152,7 @@ Event model
 
 ### Trello
 
-Link to Trello
+https://trello.com/b/UiSHj0Vz/finalproject
 
 ### Git
 
