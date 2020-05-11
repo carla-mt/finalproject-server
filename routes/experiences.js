@@ -22,7 +22,7 @@ router.get('/:id/update-experience', (req, res, next) => {
 	const { id } = req.params;
 	Experiences.findById(id)
 		.then(experienceInfo => {
-			res.render('update-experience', { experienceInfo })
+			res.json(experienceInfo)
 		})
 		.catch(next);
 })
@@ -34,13 +34,13 @@ router.post('/', (req, res, next) => {
 		industry,
 		deadline,
 		title,
-		body,
+		question,
 	} = req.body;
 	Experiences.create({
 		industry,
 		deadline,
 		title,
-		body,
+		question,
 	})
 		.then((experience) => {
 			console.log(experience)
@@ -66,21 +66,37 @@ router.post('/:id/update-experience', (req, res, next) => {
 		industry,
 		deadline,
 		title,
-		body
+		question
 	} = req.body;
 	console.log('body', req.body)
 	Experiences.findByIdAndUpdate(req.params.id, {
 		industry,
 		deadline,
 		title,
-		body
-	})
-		.then(() => {
+		question
+	}, { new: true })
+		.then((experience) => {
 			console.log(experience)
 			res.json(experience);
 		})
 		.catch(next);
 })
 
+//POST /experience/:id/answer
+router.post('/:id/answer', (req, res, next) => {
+	//const { id } = req.params;
+	//se tendrá que cambiar para que solo sea accesible para "Seniors"
+	const {
+		answer
+	} = req.body;
+	console.log('body', req.body)
+	Experiences.findByIdAndUpdate(req.params.id, { $push: { answers: answer } }
+		, { new: true })
+		.then((experience) => {
+			console.log(experience)
+			res.json(experience);
+		})
+		.catch(next);
+})
 
 module.exports = router;
